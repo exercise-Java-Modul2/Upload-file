@@ -30,18 +30,6 @@ public class MyFileUploadController {
         return multipartResolver;
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder dataBinder) {
-        Object target = dataBinder.getTarget();
-        if (target == null) {
-            return;
-        }
-        System.out.println("Target=" + target);
-        if (target.getClass() == MyUploadForm.class) {
-            dataBinder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
-        }
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String uploadOneFileHandler(Model model) {
         MyUploadForm myUploadForm = new MyUploadForm();
